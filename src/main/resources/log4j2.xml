@@ -1,0 +1,24 @@
+<Configuration status="DEBUG">
+ <Properties>
+  <!--<Property name="app-logs-dir">${env:DATA_HOME}/eirs/gui/logs/portal</Property>-->
+  <Property name="app-logs-dir">${env:LOG_HOME}/gui_module/portal</Property>
+  <Property name="log-file-name">portal</Property>
+
+ </Properties>
+ <Appenders>
+  <RollingFile name="LogToFile" fileName="${app-logs-dir}/${log-file-name}.log" filePattern="${app-logs-dir}/${log-file-name}-%d{yyyy-MM-dd-HH}-%i.log">
+   <PatternLayout>
+    <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%C] %-5level - %msg%n</Pattern>
+   </PatternLayout>
+   <Policies>
+    <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+    <SizeBasedTriggeringPolicy size="250 MB"/>
+   </Policies>
+  </RollingFile>
+ </Appenders>
+ <Loggers>
+  <Root level="info">
+   <AppenderRef ref="LogToFile"/>
+  </Root>
+ </Loggers>
+</Configuration>

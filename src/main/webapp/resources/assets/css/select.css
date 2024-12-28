@@ -1,0 +1,83 @@
+.vodiapicker{
+  display: none; 
+}
+
+#a{
+  padding-left: 0px;
+}
+
+#a img, .btn-select img{
+  width: 12px;
+  
+}
+
+#a li{
+  list-style: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+#a li:hover{
+ background-color: #F4F3F3;
+}
+
+#a li img{
+  margin: 5px;
+}
+
+#a li span, .btn-select li span{
+  margin-left: 10px;
+}
+
+/* item list */
+
+.b{
+  display: none;
+  width: 100%;
+  max-width: 150px;
+  box-shadow: 0 6px 12px rgba(0,0,0,.175);
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 5px;
+  
+}
+
+.open{
+  display: show !important;
+}
+
+.btn-select{
+  margin-top: 10px;
+  width: 100%;
+  max-width: 150px;
+  height: 34px;
+  border-radius: 5px;
+  background-color: #fff;
+  border:none;
+  cursor: pointer;
+ 
+}
+.btn-select li{
+  list-style: none;
+  float: left;
+  padding-bottom: 0px;
+}
+
+.btn-select:hover li{
+  margin-left: 0px;
+}
+
+.btn-select:hover{
+  background-color: #fff;
+  border:none;
+  
+  
+}
+
+.btn-select:focus{
+   outline:none;
+}
+
+.lang-select{
+  margin-left: 50px;
+}
