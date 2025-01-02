@@ -48,7 +48,7 @@ public class ProjectDropdownController {
     @GetMapping("getDropdownList/{tag}")
     public List<Dropdown> getTaxPaidStatus(@PathVariable("tag") String tag) {
         List<Dropdown> dropdown = feignCleintImplementation.taxPaidStatusList(tag);
-        dropdown.sort(Comparator.comparing(x -> x.getInterpretation()));
+        dropdown.sort(Comparator.comparing(x -> x.getListOrder()));
         return dropdown;
     }
 

@@ -369,7 +369,7 @@ function setAllDropdown() {
       'X-CSRF-TOKEN': token
     }
   });
-  $.getJSON('./getDropdownList/' + featureId + '/0' , function(data) {
+  $.getJSON('./getDropdownList/0/0' , function(data) {
 	/*$('#filterStatus, #historyFilterStatus').empty();
 	$('<option>').val('-1').text('Select').appendTo('#filterStatus,#historyFilterStatus');*/
 	//if(!$('#filterStatus > option').length==5){
@@ -1491,7 +1491,7 @@ function copyDetails(copiedDeviceId, Action) {
 
 
 function setEditPopupData(data, Action, deviceId) {
-  document.getElementById('editTac').removeAttribute('data-title');
+  //document.getElementById('editTac').removeAttribute('data-title');
   console.log("in setEditPopupData inside function Action Recieved " + Action + " with Device ID " + deviceId);
   //Edit Headers
   var tacs = deviceId.substring(0, 17);
@@ -1548,7 +1548,7 @@ function setEditPopupData(data, Action, deviceId) {
     $("#editTac").text(tacs);
     $("#editTac").append('...');
     document.getElementById('editTac').setAttribute('data-title', deviceId.toString());
-	console.log("#editTac-----" +$("#editTac").text());
+	//console.log("#editTac-----" +$("#editTac").text());
    
     
     document.getElementById('editTac').setAttribute('data-title', deviceId.toString());
@@ -1581,7 +1581,7 @@ function setEditPopupData(data, Action, deviceId) {
   }
   //Action == 'Multiedit' ? $("#editTac").text(deviceId) : $("#editTac").text(data.content[0].deviceId);
   if (Action == 'copy') {
-    console.log("inside if with Action = "+Action+" and Copied TAC " +$("#editCopiedTac").text());
+    //console.log("inside if with Action = "+Action+" and Copied TAC " +$("#editCopiedTac").text());
     $("#editTac").text('');
     $("#editTac").text($("#editCopiedTac").text());
     $("#editId").text($("#editCopiedId").text());
@@ -1761,7 +1761,7 @@ if(Action == 'filterCopyFrom'){
     //"userType" : parseInt($("body").attr("data-userTypeID")),
     "userTypeId": parseInt($("body").attr("data-userTypeID"))
   }
-  console.log(JSON.stringify(filterRequest));
+  //console.log(JSON.stringify(filterRequest));
   
   var token = $("meta[name='_csrf']").attr("content");
   var header = $("meta[name='_csrf_header']").attr("content");
@@ -1978,11 +1978,11 @@ function addDeviceDetails() {
   $("#addOem").val()=="" ? fieldList.push ("OEM") : $("#addOem").val();
   $("#addOrganizationID").val()=="" ? fieldList.push ("Organization ID") : $("#addOrganizationID").val();
   $("#addDeviceIDAllocationDate").val()=="" ? fieldList.push ("Device ID Allocation Date") : $("#addDeviceIDAllocationDate").val();
-  console.log("fieldList updated is  "+fieldList +" and length"+fieldList.length);
+  //console.log("fieldList updated is  "+fieldList +" and length"+fieldList.length);
 
   if(fieldList.length !=0){
   		for (var i = 0; i < fieldList.length; i++) {
-   		console.log("field values---" +fieldList[i]);
+   		//console.log("field values---" +fieldList[i]);
    		$("#errorFieldList").append("<ul><li>"+fieldList[i]+"</li></ul>");
   		 };
   	 	$("#fieldValidationMsg").css("display", "block");
@@ -2009,11 +2009,11 @@ function addDeviceDetails() {
   var attachedFiles = [];
   var temp;
   for (var j = 1; j <= 5; j++) {
-    console.log("j is ------" + j);
-    console.log("document.getElementById---- " + document.getElementById("mainFrameSaveInput" + j));
+    //console.log("j is ------" + j);
+    //console.log("document.getElementById---- " + document.getElementById("mainFrameSaveInput" + j));
     temp = document.getElementById("mainFrameSaveInput" + j);
-    console.log("temp updated-" + temp);
-    console.log("document.getElementById('mainFrameSaveInput' + j).files.length--" + document.getElementById("mainFrameSaveInput" + j).files.length);
+    //console.log("temp updated-" + temp);
+    //console.log("document.getElementById('mainFrameSaveInput' + j).files.length--" + document.getElementById("mainFrameSaveInput" + j).files.length);
     if (document.getElementById("mainFrameSaveInput" + j).files.length == 0) {
       continue;
     }
@@ -2027,7 +2027,7 @@ function addDeviceDetails() {
       "fileName": temp.name
     }
     fileInfo.push(x);
-    console.log("x is-------" + JSON.stringify(x));
+    //console.log("x is-------" + JSON.stringify(x));
     attachedFiles.push(x);
     formData.append('files[]', temp);
   }
@@ -2148,7 +2148,7 @@ function addDeviceDetails() {
   //formData.append('deviceId', $("#editTac").text());
   //formData.append('id', parseInt($("#editId").text()));
   //formData.append('files[]', JSON.stringify(fileInfo));
-  console.log(JSON.stringify(multiRequest));
+  //console.log(JSON.stringify(multiRequest));
   var token = $("meta[name='_csrf']").attr("content");
   var header = $("meta[name='_csrf_header']").attr("content");
   $.ajaxSetup({
@@ -2165,10 +2165,10 @@ function addDeviceDetails() {
     contentType: false,
     async: false,
     success: function(response, textStatus, jqXHR) {
-      console.log(JSON.stringify(response));
+      //console.log(JSON.stringify(response));
       var data = JSON.parse(response);
-      console.log("data - "+ data);
-      console.log("data.errorCode " +data.errorCode);
+      //console.log("data - "+ data);
+      //console.log("data.errorCode " +data.errorCode);
       $('#AddconfirmationModal').closeModal({
     	dismissible: false
   	});
@@ -2178,7 +2178,7 @@ function addDeviceDetails() {
       $('[id^=mainFrameSave]').attr("src", './resources/assets/images/NoImage.jpg');
       idCount1=0;
   	  DeviceDataTable(lang, null, null, null);
-  	  console.log("data.errorCode " +data.errorCode);
+  	  //console.log("data.errorCode " +data.errorCode);
   	  if(data.errorCode === '500'){
   	    $('#saveFailedConfirmationMessage').openModal({
                                         	dismissible: false
@@ -2204,7 +2204,7 @@ function addDeviceDetails() {
       //alert("inside save success function" +JSON.stringify(response));
     },
     error: function(jqXHR, textStatus, errorThrown) {
-      console.log("error in ajax")
+      //console.log("error in ajax")
     }
   });
   $('div#initialloader').delay(300).fadeOut('slow');
@@ -2228,7 +2228,7 @@ function updateDeviceDetails(updateSource) {
   var deviceRequest;
   var deviceIds = [];
   var rowIds = [];
-  console.log("multiEditCount is " + multiEditCount);
+  //console.log("multiEditCount is " + multiEditCount);
   if (multiEditCount == 0) {
     multiEditCount = 1;
     deviceIds.push($("#editTac").text().trim());
@@ -2239,36 +2239,36 @@ function updateDeviceDetails(updateSource) {
       var multiDeviceId = $("#editTac").text(document.getElementById('editTac').getAttribute('data-title'));
           multiDeviceId = $("#editTac").text().replace("...", "");
       deviceIds = multiDeviceId.trim().split(',');
-      console.log("deviceIds-----" +deviceIds);
+      //console.log("deviceIds-----" +deviceIds);
       rowIds = $("#editId").text().trim().split(',');
-      console.log("includes('...')==true");
-      console.log("rowIds2 ---------" +rowIds+"  and deviceIds2-----" +deviceIds);
+      //console.log("includes('...')==true");
+      //console.log("rowIds2 ---------" +rowIds+"  and deviceIds2-----" +deviceIds);
     } else {
       deviceIds = $("#editTac").text().trim().split(',');
       rowIds = $("#editId").text().trim().split(',');
-      console.log("includes('...')==false");
+      //console.log("includes('...')==false");
     }
   }
   for (i = 0; i < multiEditCount; i++) {
     fileInfo = [];
     //var elements = document.getElementsByClassName("subImageClass");
-    //console.log("elements.length --- " +elements.length);	
+    ////console.log("elements.length --- " +elements.length);
     var attachedFiles = [];
     var temp;
     for (var j = 1; j <= 5; j++) {
       //temp = $("#mainFrameEditInput" + j).files.item[0];
-      //console.log("j is ------" + j);
-      //console.log("document.getElementById---- " + document.getElementById("mainFrameEditInput" + j));
-      //console.log("document by jquery---- " + $("#mainFrameEditInput" + j).prop("files")[0]);
+      ////console.log("j is ------" + j);
+      ////console.log("document.getElementById---- " + document.getElementById("mainFrameEditInput" + j));
+      ////console.log("document by jquery---- " + $("#mainFrameEditInput" + j).prop("files")[0]);
       temp = document.getElementById("mainFrameEditInput" + j);
-      console.log("temp updated-" + temp);
-      console.log("document.getElementById('mainFrameEditInput' + j).files.length--" + document.getElementById("mainFrameEditInput" + j).files.length);
+      //console.log("temp updated-" + temp);
+      //console.log("document.getElementById('mainFrameEditInput' + j).files.length--" + document.getElementById("mainFrameEditInput" + j).files.length);
       //if (temp.files === null || temp.files === undefined ) {
       //	continue;
       //}
       
       const imgId = $("#mainFrameEdit" + j).attr("img-id");
-      console.log('image id:', $("#mainFrameEdit" + j).attr("img-id"));
+      //console.log('image id:', $("#mainFrameEdit" + j).attr("img-id"));
       
       
       if (document.getElementById("mainFrameEditInput" + j).files.length == 0 && (imgId==null || imgId==undefined ) ) {
@@ -2281,7 +2281,7 @@ function updateDeviceDetails(updateSource) {
         "mdrId": parseInt(rowIds[i]),
 	  };
       
-      console.log("temp----"+temp);
+      //console.log("temp----"+temp);
       if(temp!=null || temp!=undefined){
 		x.fileName=temp.name;
 	  };
@@ -2298,7 +2298,7 @@ function updateDeviceDetails(updateSource) {
         }
       }
       fileInfo.push(x);
-      console.log("x is-------" + JSON.stringify(x));
+      //console.log("x is-------" + JSON.stringify(x));
       attachedFiles.push(x);
       formData.append('files[]', temp);
     }
@@ -2419,7 +2419,7 @@ function updateDeviceDetails(updateSource) {
   console.log("JSON.stringify(fileInfo)--" + JSON.stringify(fileInfo));
   //console.log("formData --- " +JSON.stringify(formData));
   //alert(JSON.stringify($('#docTypeFile'+ fieldId)[0].files[0]));
-  console.log(JSON.stringify(multiRequest));
+  //console.log(JSON.stringify(multiRequest));
   var token = $("meta[name='_csrf']").attr("content");
   var header = $("meta[name='_csrf_header']").attr("content");
   $.ajaxSetup({
@@ -2436,7 +2436,7 @@ function updateDeviceDetails(updateSource) {
     contentType: false,
     async: false,
     success: function(response, textStatus, jqXHR) {
-      console.log(JSON.stringify(response));
+      //console.log(JSON.stringify(response));
        $('#updateConfirmationModal').closeModal({
     	dismissible: false
   	});
@@ -2465,7 +2465,7 @@ function updateDeviceDetails(updateSource) {
 	}, 3000);
     },
     error: function(jqXHR, textStatus, errorThrown) {
-      console.log("error in ajax")
+      //console.log("error in ajax")
     }
   });
   return false;
@@ -2535,7 +2535,8 @@ function exportData() {
     contentType: 'application/json; charset=utf-8',
     data: JSON.stringify(filterRequest),
     success: function(data, textStatus, jqXHR) {
-      window.location.href = data.url;
+      //window.location.href = data.url;
+      finalURL(data.url);
     },
     error: function(jqXHR, textStatus, errorThrown) {}
   });
@@ -2661,12 +2662,12 @@ const preview = (file) => {
   fr.onload = () => {
     //alert("inside preview1");
     // const div = document.createElement("div");
-    console.log("filereader1 updated Line----1601 with idCount " + idCount);
-    console.log("inside preview1");
+    //console.log("filereader1 updated Line----1601 with idCount " + idCount);
+    //console.log("inside preview1");
     idCount = idCount + 1;
     //idCount = idCount;
     enableAndDisableUploadButton(idCount, "docTypeFile1");
-    console.log("'src', URL.createObjectURL(file)---" + URL.createObjectURL(file));
+    //console.log("'src', URL.createObjectURL(file)---" + URL.createObjectURL(file));
     document.getElementById("mainFrameEdit" + idCount).removeAttribute('src');
     //document.getElementById("mainFrameEdit" + idCount).src = fr.result;  // String Base64
     document.getElementById("mainFrameEdit" + idCount).setAttribute('src', URL.createObjectURL(file));
@@ -2698,15 +2699,15 @@ const preview2 = (file) => {
   const fr1 = new FileReader();
   fr1.onload = () => {
     // const div = document.createElement("div");
-    console.log("filereader2 Line----1639");
+    //console.log("filereader2 Line----1639");
     idCount1 = idCount1 + 1;
     enableAndDisableUploadButton(idCount1, "docTypeFileSave");
-    console.log("inside preview2");
+    //console.log("inside preview2");
     //document.getElementById("mainFrameSave" + idCount1).removeAttribute('src');
     //document.getElementById("mainFrameSave" + idCount1).src = fr1.result;  // String Base64 
     //document.getElementById("mainFrameSave" + idCount1).setAttribute('src', fr1);
     //document.getElementById("mainFrameSave" + idCount1).alt = file.name;
-    console.log("'src', URL.createObjectURL(file)---" + URL.createObjectURL(file));
+    //console.log("'src', URL.createObjectURL(file)---" + URL.createObjectURL(file));
     document.getElementById("mainFrameSave" + idCount1).removeAttribute('src');
     //document.getElementById("mainFrameEdit" + idCount).src = fr.result;  // String Base64
     document.getElementById("mainFrameSave" + idCount1).setAttribute('src', URL.createObjectURL(file));
@@ -2748,7 +2749,7 @@ function removeIMG(imgTagID,imgInputId) {
 }
 
 function UploadImage(imageInputID, mainFrameID) {
-  console.log("filereader3 Line----1695");
+  //console.log("filereader3 Line----1695");
   //document.getElementById(imageInputID).removeAttribute('src');
   document.getElementById('mainFrameSave' + imageInputID).removeAttribute('src');
   //dd(imageInputID,replaceBtnID);
@@ -2774,7 +2775,7 @@ function UploadImage(imageInputID, mainFrameID) {
         document.getElementById("copyFromsubFrameInput" + imageInputID).files = event.target.files;
 }*/
 function UploadUpdateImage(imageInputID, mainFrameID) {
-  console.log("in UploadUpdateImage");
+  //console.log("in UploadUpdateImage");
   document.getElementById('mainFrameEdit' + imageInputID).removeAttribute('src');
   //dd(imageInputID,replaceBtnID);
   //  frame.src=URL.createObjectURL(event.target.files[0]);
@@ -2795,13 +2796,13 @@ function dd(imageInputID, replaceBtnID) {
 
 function enableAndDisableUploadButton(count, inputId) {
   var max_fields = localStorage.getItem("maxCount");
-  console.log("max_fields+ " +max_fields);
+  //console.log("max_fields+ " +max_fields);
   if (count == max_fields) {
     $("#" + inputId).prop("disabled", true);
-    console.log("in if block with count " +count);
+    //console.log("in if block with count " +count);
   } else {
     $("#" + inputId).attr("disabled", false);
-    console.log("in else block with count " +count);
+    //console.log("in else block with count " +count);
   }
 }
 
@@ -2835,7 +2836,7 @@ async function convertImageToBlob(url) {
       throw new Error('Image request failed');
     }
     const blob = await response.blob();
-    console.log("blob recieved :::::" + blob);
+    //console.log("blob recieved :::::" + blob);
     return blob;
   } catch (error) {
     throw error;
@@ -2843,7 +2844,7 @@ async function convertImageToBlob(url) {
 };
 
 async function copyAllImage() {
-  console.log("window.location.origin" + window.location.origin);
+  //console.log("window.location.origin" + window.location.origin);
   const baseURL = window.location.origin;
   for (var i = 1; i <= 5; i++) {
     const imageTag = document.getElementById('mainFrameEdit' + i);
@@ -2851,13 +2852,13 @@ async function copyAllImage() {
     const src = imageTag.getAttribute('src');
     //const filename = ''; // Extract image file name
     const filename = src.substring(src.lastIndexOf('/') + 1);
-    console.log("src is  " + src);
+    //console.log("src is  " + src);
     if (src == './resources/assets/images/NoImage.jpg' || !src) {
       continue;
     };
     try {
       const URL = baseURL + src;
-      console.log("Final URL " + URL);
+      //console.log("Final URL " + URL);
       const imageBlob = await convertImageToBlob(encodeURI(URL));
       const imageFile = new File([imageBlob], filename, {
         type: imageBlob.type
@@ -2866,9 +2867,9 @@ async function copyAllImage() {
       dataTransfer.items.add(imageFile);
       fileInput.files = dataTransfer.files;
       //fileInput.files = new FileList([imageFile]);
-      console.log("in TRY");
+      //console.log("in TRY");
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   }
 };
@@ -2876,7 +2877,7 @@ async function copyAllImage() {
 function validateImportaintField(){
 var fieldList = [];
 if ($('#completeCheckBox').is(":checked") == true) {
-	 console.log("checked");
+	 //console.log("checked");
 
     $("#addManufacturer").val() == "" && !fieldList.includes("Manufacturer") ? fieldList.push("Manufacturer") : $("#addManufacturer").val();
     $("#addBrand").val() == "" && !fieldList.includes("Brand Name") ? fieldList.push("Brand Name") : $("#addBrand").val();
@@ -2918,11 +2919,11 @@ if ($('#completeCheckBox').is(":checked") == true) {
 	 $("#addsourcePriceCambodia").val()=="" ? fieldList.push ("Source Of Cambodia Market Price") : $("#addsourcePriceCambodia").val();
 	 $("#addcustomPrice").val()=="" ? fieldList.push ("Custom Price Of Device") : $("#addcustomPrice").val();
 	 
-	 console.log("fieldList updated is  "+fieldList +" and length"+fieldList.length);
+	 //console.log("fieldList updated is  "+fieldList +" and length"+fieldList.length);
 	 
 	  if(fieldList.length !=0){
 		for (var i = 0; i < fieldList.length; i++) {
- 		console.log("field values---" +fieldList[i]);
+ 		//console.log("field values---" +fieldList[i]);
  		$("#errorFieldList").append("<ul><li>"+fieldList[i]+"</li></ul>");
 		 }; 
 	 	$("#fieldValidationMsg").css("display", "block");  
@@ -2937,7 +2938,7 @@ if ($('#completeCheckBox').is(":checked") == true) {
 	} 
 	                          
 }else{
-	console.log("not checked");
+	//console.log("not checked");
 	$("#fieldValidationMsg").css("display", "none"); 
 	$("#fieldValidationSuccessMsg").css("display", "none"); 
 	$("#errorFieldList").text("");  
@@ -2949,7 +2950,7 @@ if ($('#completeCheckBox').is(":checked") == true) {
 function validateImportaintFieldUpdate(){
 var fieldList = [];
 if ($('#completeCheckBoxEdit').is(":checked") == true) {
-	 console.log("checked");
+	 //console.log("checked");
 	 $("#editManufacturer").val()=="" ? fieldList.push("Manufacturer") : $("#editManufacturer").val(); 
 	 $("#editMarketingName").val()=="" ? fieldList.push ("Marketing Name") : $("#editMarketingName").val();
 	// $("#editManufacturingAddress").val()=="" ? fieldList.push ("Manufacturing Address") : $("#editManufacturingAddress").val();  
@@ -2991,11 +2992,11 @@ if ($('#completeCheckBoxEdit').is(":checked") == true) {
 	 
 	  $("#editManufacturerCountry").val()==0 ? fieldList.push ("Manufacturer Country") : $("#editManufacturerCountry").val();
 	 
-	 console.log("fieldList updated is  "+fieldList +" and length"+fieldList.length);
+	 //console.log("fieldList updated is  "+fieldList +" and length"+fieldList.length);
 	 
 	  if(fieldList.length !=0){
 		for (var i = 0; i < fieldList.length; i++) {
- 		console.log("field values---" +fieldList[i]);
+ 		//console.log("field values---" +fieldList[i]);
  		$("#errorFieldListEdit").append("<ul><li>"+fieldList[i]+"</li></ul>");
 		 }; 
 	 	$("#fieldValidationMsgEdit").css("display", "block");  
@@ -3010,7 +3011,7 @@ if ($('#completeCheckBoxEdit').is(":checked") == true) {
 	} 
 	                          
 }else{
-	console.log("not checked");
+	//console.log("not checked");
 	$("#fieldValidationMsgEdit").css("display", "none"); 
 	$("#fieldValidationSuccessMsgEdit").css("display", "none"); 
 	$("#errorFieldListEdit").text("");  

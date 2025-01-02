@@ -22,6 +22,13 @@ $(document).ready(function() {
   //$('div#initialloader').fadeIn('fast');
   getDashboardCount();
   DeviceDataTable(lang, null, null, null);
+
+   var protocol = window.location.protocol;
+              var domain = window.location.hostname;
+              var port = window.location.port;
+              window.urlWithProtocol = port == '' ? protocol + "//" + domain : protocol + "//" + domain +":" + port;
+              completeDomainName = port == '' ? protocol + "//" + domain : protocol + "//" + domain +":" + port;
+              //alert("MDR Dashboard " +window.urlWithProtocol);
   
 });
 

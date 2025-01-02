@@ -270,6 +270,8 @@
     var port = window.location.port;
     window.urlWithProtocol = port == '' ? protocol + "//" + domain : protocol + "//" + domain +":" + port;
     completeDomainName = port == '' ? protocol + "//" + domain : protocol + "//" + domain +":" + port;
+     console.log("window.urlWithProtocol Ready Function " +window.urlWithProtocol);
+     alert(window.urlWithProtocol);
     });
 
 
@@ -328,10 +330,14 @@
     if(dataURL ==null || dataURL == "" || dataURL ==undefined){
     }
     else{
-    var urlInRespone=dataURL;
+    var protocol = window.location.protocol;
+        var domain = window.location.hostname;
+        var port = window.location.port;
+        let urlWithProtocol = port == '' ? protocol + "//" + domain : protocol + "//" + domain +":" + port;
+        var urlInRespone=dataURL;
     var parts = urlInRespone.split('/');
     var extractedValue = parts.slice(0, 3).join('/');
-    var finalPath = urlInRespone.replace(extractedValue, window.urlWithProtocol);
+    var finalPath = urlInRespone.replace(extractedValue, urlWithProtocol);
     return window.location.href = finalPath;
 
     }
