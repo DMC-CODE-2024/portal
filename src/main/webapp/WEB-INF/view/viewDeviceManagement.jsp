@@ -1069,7 +1069,7 @@ data-stolenselected-roleType="${stolenselectedUserTypeId}" data-userName="${user
             <form action="#" enctype="multipart/form-data" id="viewDeviceHistoryForm">
                 <div class="content-header d-flex align-items-center justify-content-between">
                     <h1 id="viewHistoryModelLabel">
-                        <spring:message code="input.viewHistory" />
+                        View History
                     </h1>
 
                 </div>

@@ -226,7 +226,7 @@ var nwlTableArray = [
 	{ title: 'TRC Status',"data": "trcImeiStatusInterp","defaultContent": "NA" },
 	{ title: 'GDCE/Manufacture Status',"data": "gdceStatusInterp","defaultContent": "NA" },
 	{ title: 'Validity Status',"data": "validityFlagInterp","defaultContent": "NA" },
-	{ title: 'Reason',"data": "reason","defaultContent": "NA" },
+	{ title: 'Reason',"data": "reasonForInvalidImei","defaultContent": "NA" },
 ];
 
 var invalidImeiTableArray = [

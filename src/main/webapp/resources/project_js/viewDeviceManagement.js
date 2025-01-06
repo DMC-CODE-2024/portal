@@ -339,7 +339,19 @@ function pageRendering(requestType, deviceId) {
         $("#historyfilterButtonDiv").show();
         $("#backBtn").css("display", "block");
       }
-     // setAllDropdown();
+
+      $.getJSON('./getDropdownList/0/0' , function(data) {
+      	for (i = 0; i < data.length; i++) {
+            $('<option>').val(data[i].state).text(data[i].interpretation).appendTo('#historyFilterStatus');
+          }
+        });
+
+        $.getJSON('./getDeviceTypeName', function(data) {
+            for (i = 0; i < data.length; i++) {
+             $('<option>').val(data[i]).text(data[i]).appendTo('#historyfilterDeviceType');
+            }
+          });
+        //setAllDropdown();
     }
   });
   //$('div#initialloader').delay(300).fadeOut('slow');
@@ -370,15 +382,11 @@ function setAllDropdown() {
     }
   });
   $.getJSON('./getDropdownList/0/0' , function(data) {
-	/*$('#filterStatus, #historyFilterStatus').empty();
-	$('<option>').val('-1').text('Select').appendTo('#filterStatus,#historyFilterStatus');*/
-	//if(!$('#filterStatus > option').length==5){
-		for (i = 0; i < data.length; i++) {
+	for (i = 0; i < data.length; i++) {
       $('<option>').val(data[i].state).text(data[i].interpretation).appendTo('#filterStatus,#historyFilterStatus');
-    //}
-	}
-    
+    }
   });
+
   $.getJSON('./getDropdownList/MULTI_SIM_STATUS', function(data) {
 	//$('#editSimSlots,#editnumberofIMEI,#addSimSlots,#addnumberofIMEI,#viewHistorySimSlots,#viewHistorynumberofIMEI').empty();
 	//$('<option>').val('').text('Select').appendTo('#editSimSlots,#editnumberofIMEI,#addSimSlots,#addnumberofIMEI,#viewHistorySimSlots,#viewHistorynumberofIMEI');
@@ -653,6 +661,7 @@ function viewHistoryDetails(deviceId,rowId){
       setHistoryViewData(data);
       $("#datatableViewDiv").css("display", "none");
       $("#mobileDetailHistoryViewDiv").css("display", "block")
+
       //$("#viewdetailedHistoryLabel").css("display", "block");
       //$("#viewModelLabel,#editFromViewBtn").css("display", "none");
       //DeviceDataTable(lang, null, null, null);
